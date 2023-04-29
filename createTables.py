@@ -29,12 +29,12 @@ tblUserDetails = """create table tblUserDetails (
     first_name varchar(20),
     second_name varchar(20),
     email_id varchar(50),
-    phone_number varchar(50),
+    phone_number numeric(10),
     gender varchar(1),
 
     constraint FK_UserDetails_Users foreign key (user_id) references tblUsers(user_id),
     constraint CHK_valid_email_user check(email_id like '%@%.com'),
-    constraint CHK_valid_phone_number_user check(phone_number like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
+    constraint CHK_valid_phone_number_user check(phone_number >= 1000000000 and phone_number <= 9999999999),
     constraint CHK_valid_gender_user check(gender in ('F', 'M', 'O'))
 )"""
 
@@ -53,12 +53,12 @@ tblEmployeeDetails = """create table tblEmployeeDetails (
     first_name varchar(20),
     second_name varchar(20),
     email_id varchar(50),
-    phone_number varchar(50),
+    phone_number numeric(10),
     gender varchar(1),
 
     constraint FK_UserDetails_Employees foreign key (employee_id) references tblEmployees(employee_id),
     constraint CHK_valid_email_employee check(email_id like '%@%.com'),
-    constraint CHK_valid_phone_number_employee check(phone_number like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
+    constraint CHK_valid_phone_number_employee check(phone_number >= 1000000000 and phone_number <= 9999999999),
     constraint CHK_valid_gender_employee check(gender in ('F', 'M', 'O'))
 )"""
 
@@ -72,7 +72,7 @@ tblTains_create = """create table tblTrains (
     end_location varchar(50)
 )"""
 
-tblTrains_adddata = """load data local infile '/home/saatwik/Documents/trains_project/All_Indian_Trains.csv'
+tblTrains_adddata = """load data local infile '~/Documents/train_management/All_Indian_Trains.csv'
 into table tblTrains
 fields terminated by ','
 ignore 1 rows"""
@@ -112,8 +112,8 @@ tblBookings = """create table tblBookings (
 
 # Table creation
 
-cursorObject.execute("create database training")
-cursorObject.execute("use training")
+cursorObject.execute("create database train_management")
+cursorObject.execute("use train_management")
 cursorObject.execute(tblUser)
 cursorObject.execute(tblUserDetails)
 cursorObject.execute(tblEmployees)

@@ -128,3 +128,6 @@ select * from tbl
 
 -- Get Train Details Function 
 
+insert into tblUsers values(null, 'saatwik', 'password');
+insert into tblEmployees values (null, 'aansh', 'hello123');
+insert into tblEmployeeDetails values (1, 'aansh', 'basu', 'hello@gmail.com', '9740225444', 'M');
