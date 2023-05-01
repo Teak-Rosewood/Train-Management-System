@@ -17,7 +17,10 @@ class TrainData:
         parameters = (username, )
         self.cursorObject.execute(query, parameters)
         data = self.cursorObject.fetchall()
-        return (data[0])[2]
+        if len(data) > 0:
+            return (data[0])[2]
+        else:
+            return False
         
     def set_user_data(self, username, password, first_name, second_name, email_id, phone_number, gender):
         pass
@@ -27,14 +30,20 @@ class TrainData:
         parameters = (username, )
         self.cursorObject.execute(query, parameters)
         data = self.cursorObject.fetchall()
-        return data[0]
+        if len(data) > 0:
+            return (data[0])
+        else:
+            return False
 
     def get_employee_password(self, username):
         query = """select * from tblEmployees where username = %s"""
         parameters = (username, )
         self.cursorObject.execute(query, parameters)
         data = self.cursorObject.fetchall()
-        return (data[0])[2]
+        if len(data) > 0:
+            return (data[0])[2]
+        else:
+            return False
     
     def set_employee_data(self, username, password, first_name, second_name, email_id, phone_number, gender):
         pass
@@ -44,7 +53,10 @@ class TrainData:
         parameters = (username, )
         self.cursorObject.execute(query, parameters)
         data = self.cursorObject.fetchall()
-        return data[0]
+        if len(data) > 0:
+            return (data[0])
+        else:
+            return False
     
     def book_scheduled_train(self, train_id, departure_date_time, arrival_date_time, ac_seats, ac_seats_occupied, non_ac_seats, non_ac_seats_occupied):
         pass
@@ -80,7 +92,7 @@ class TrainData:
 traindata = TrainData('user', 'password', 'localhost')
 #traindata.cursorObject.execute("insert into tblUsers values (null, 'saatwik', 'password')")
 #traindata.dataBase.commit()
-#print(traindata.get_user_password('saatwik'))
+print(traindata.get_user_password('saatwik'))
 #print(traindata.get_train_details(startlocation='Lokmanyatilak T', endlocation='Madgaon'))
 # Get Available Scheduled Trains on Specifed Date Function
 # Common Functions
