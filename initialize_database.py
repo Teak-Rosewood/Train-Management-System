@@ -59,8 +59,8 @@ tblEmployeeDetails = """create table tblEmployeeDetails (
 # Train table 
 
 tblTains_create = """create table tblTrains (
-    num numeric(5),
     train_id numeric(10) primary key,
+    num numeric(5),
     train_name varchar(50),
     start_location varchar(50),
     end_location varchar(50)

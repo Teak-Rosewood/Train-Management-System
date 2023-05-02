@@ -60,6 +60,26 @@ class TrainData:
         else:
             return False
         
+    # Resetting User password on registration
+        
+    def set_user_password(self, username, password, new_password):
+        temp_pass = self.get_user_password(username)
+        if temp_pass == False:
+            return False
+        elif temp_pass == password:
+            query = """update tblUsers
+            set password = %s,
+            where username = %s"""
+            parameters = (new_password, username)
+            try:
+                self.cursorObject.execute(query, parameters)
+            except mysql.connector.Error as err:
+                return err
+            self.dataBase.commit()
+            return True
+        else:
+            return False
+        
     # Getting Employee password to authenticate login
 
     def get_employee_password(self, username):
@@ -69,6 +89,26 @@ class TrainData:
         data = self.cursorObject.fetchall()
         if len(data) > 0:
             return (data[0])[1]
+        else:
+            return False
+    
+    # Resetting User password on registration
+        
+    def set_employee_password(self, emp_username, password, new_password):
+        temp_pass = self.get_employee_password(emp_username)
+        if temp_pass == False:
+            return False
+        elif temp_pass == password:
+            query = """update tblEmployees
+            set password = %s,
+            where emp_username = %s"""
+            parameters = (new_password, emp_username)
+            try:
+                self.cursorObject.execute(query, parameters)
+            except mysql.connector.Error as err:
+                return err
+            self.dataBase.commit()
+            return True
         else:
             return False
 
