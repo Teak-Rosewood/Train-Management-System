@@ -60,9 +60,9 @@ class TrainData:
         else:
             return False
         
-    # Resetting User password on registration
+    # Changing user password on registration
         
-    def set_user_password(self, username, password, new_password):
+    def change_user_password(self, username, password, new_password):
         temp_pass = self.get_user_password(username)
         if temp_pass == False:
             return False
@@ -92,9 +92,9 @@ class TrainData:
         else:
             return False
     
-    # Resetting User password on registration
+    # Change user password on registration
         
-    def set_employee_password(self, emp_username, password, new_password):
+    def change_employee_password(self, emp_username, password, new_password):
         temp_pass = self.get_employee_password(emp_username)
         if temp_pass == False:
             return False
