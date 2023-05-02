@@ -123,6 +123,38 @@ class TrainData:
             return (data[0])
         else:
             return False
+        
+    # Setting a security code for the password 
+
+    def set_security_code(self, username, security_code):
+        query = """insert into tblResetPassword values (%s, %s)"""
+        parameters = (username, security_code)
+        try:
+            self.cursorObject.execute(query, parameters)
+        except: 
+            return False
+        return True
+    
+    # Resetting password 
+
+    def reset_password(self, username, security_code, new_password):
+        query = """select security_code from tblReserPassword where username = %s"""
+        parameters = (username)
+        self.cursorObject.execute(query, parameters)
+        data = self.cursorObject.fetchall()
+        if len(data) > 0:
+            if data[0] == security_code:
+                query = """update tblUsers 
+                set password = %s
+                where username = %s"""
+                parameters = (new_password, username)
+                try:
+                    self.cursorObject.execute(query, parameters)
+                except: 
+                    return False
+                return True
+        else:
+            return False
 
     # Getting Employee Data to display on profile page 
 

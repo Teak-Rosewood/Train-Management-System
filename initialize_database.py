@@ -104,6 +104,15 @@ tblBookings = """create table tblBookings (
     constraint FK_TrainSchedules_Bookings foreign key (schedule_id) references tblTrainSchedules(schedule_id)
 )"""
 
+# User reset password
+
+tblResetPassword = """create table tblResetPassword (
+    username varchar(20),
+    security_code varchar(20),
+
+    constraint FK_Users_ResetPassword foreign key (username) references tblUsers(username),
+)"""
+
 # Table creation
 
 cursorObject.execute("create database train_management")
@@ -117,6 +126,7 @@ cursorObject.execute(tblTrains_adddata)
 cursorObject.execute(tblTains_deletecol)
 cursorObject.execute(tblTrainSchedules)
 cursorObject.execute(tblBookings)
+cursorObject.execute(tblResetPassword)
 
 
 
